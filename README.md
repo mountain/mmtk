@@ -15,3 +15,12 @@ generate an installer by jpackage
 ```bash
 bin/build
 ```
+
+Or you just want to build it and run on jvm
+
+```bash
+bin/lein uberjar
+java -jar target/mmj2e-standalone.jar
+```
+
+
