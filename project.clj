@@ -1,4 +1,4 @@
-(defproject nmmj2 "0.0.0"
+(defproject nmmj2 "0.0.1"
   :description "new mmj2 for metamath"
   :url "http://example.com/FIXME"
   :license {:name "GPL-2.0 WITH Classpath-exception-2.0"}
@@ -14,7 +14,7 @@
                    :all (constantly true)}
   :compile-path "target/classes"
   :target-path "target/"
-  :javac-options ["--release" "15"]
+  :javac-options ["--release" "11"]
   :omit-source true
   :jvm-opts ["-Xmx1g"]
 
