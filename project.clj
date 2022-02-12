@@ -1,7 +1,7 @@
 (defproject nmmj2 "0.0.1"
   :description "new mmj2 for metamath"
-  :url "http://example.com/FIXME"
-  :license {:name "GPL-2.0 WITH Classpath-exception-2.0"}
+  :url "https://github.com/mountain/nmmj2"
+  :license {:name "GPL-2.0"}
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [org.openjdk.nashorn/nashorn-core "15.3"]]
   :source-paths ["src/main/clojure"]
