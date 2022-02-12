@@ -1,6 +1,6 @@
-(defproject nmmj2 "0.0.1"
-  :description "new mmj2 for metamath"
-  :url "https://github.com/mountain/nmmj2"
+(defproject mmj2e "0.0.0"
+  :description "mmj2e"
+  :url "https://github.com/mountain/mmj2e"
   :license {:name "GPL-2.0"}
   :dependencies [[org.clojure/clojure "1.10.3"]
                  [org.openjdk.nashorn/nashorn-core "15.3"]]
@@ -17,8 +17,6 @@
   :javac-options ["--release" "11"]
   :omit-source true
   :jvm-opts ["-Xmx1g"]
-
-  :uberjar-name "nmmj2.jar"
 
   :aot :all
   :main metamath.core)

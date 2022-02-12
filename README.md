@@ -1,4 +1,4 @@
-# New mmj2 of metamath
+# mmj2e of metamath
 
 This is a new experimental mmj2 revision for higher version of Java, and the build system is also updated to catch up with modern Java development.
 
@@ -10,6 +10,6 @@ After you change your DefaultParams.txt accordingly, you can issue commands belo
 
 ```bash
 bin/lein uberjar
-java -jar target/nmmj2.jar DefaultParams.txt
+java -jar target/mmj2e.jar DefaultParams.txt
 ```
 
