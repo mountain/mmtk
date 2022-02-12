@@ -13,7 +13,7 @@ pom.xml.asc
 .hg/
 
 .idea/
-database/
-marcos/
-work/
+dist/database/
+dist/marcos/
+dist/work/
 

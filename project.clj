@@ -3,6 +3,7 @@
   :url "https://github.com/mountain/mmj2e"
   :license {:name "GPL-2.0"}
   :dependencies [[org.clojure/clojure "1.10.3"]
+                 [clj-http "3.12.3"]
                  [org.openjdk.nashorn/nashorn-core "15.3"]]
   :source-paths ["src/main/clojure"]
   :java-source-paths ["src/main/java"]
@@ -18,5 +19,7 @@
   :omit-source true
   :jvm-opts ["-Xmx1g"]
 
+  :uberjar-name "mmj2e-standalone.jar"
+
   :aot :all
-  :main metamath.core)
+  :main metamath.mmj2e)

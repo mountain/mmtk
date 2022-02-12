@@ -1,0 +1,7 @@
+LoadFile,~/.metamath/database/set.mm
+VerifyProof,*
+Parse,*
+ProofAsstUnifySearchExclude,biigb,xxxid,dummylink
+ProofAsstProofFolder,~/.metamath/proof
+TheoremLoaderMMTFolder,~/.metamath/mmtf
+RunProofAsstGUI

@@ -1,0 +1,3 @@
+bin/lein uberjar
+cp target/mmj2e-standalone.jar dist/mmj2e-standalone.jar
+jpackage --input dist --main-jar mmj2e-standalone.jar
