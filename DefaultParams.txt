@@ -1,0 +1,7 @@
+LoadFile,./database/set.mm
+VerifyProof,*
+Parse,*
+ProofAsstUnifySearchExclude,biigb,xxxid,dummylink
+ProofAsstProofFolder,./work
+TheoremLoaderMMTFolder,./work
+RunProofAsstGUI

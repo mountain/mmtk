@@ -3,5 +3,4 @@
   (:gen-class))
 
 (defn -main [& args]
-  (let [retcode (.runIt (BatchMMJ2.) args)]
-    (System/exit retcode)))
+  (.runIt (BatchMMJ2.) (into-array String args)))

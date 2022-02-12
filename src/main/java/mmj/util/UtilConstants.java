@@ -2199,7 +2199,7 @@ public class UtilConstants {
             + "      - Examples:\n"
             + "         *       1         2         3         4\n"
             + "         *234567890123456789012345678901234567890\n"
-            + "         MacroLanguage,js,js\n"
+            + "         MacroLanguage,nashorn,js\n"
             + "         MacroLanguage,BeanShell,bsh\n"
             + "         MacroLanguage,jruby,rb\n" + " </pre>\n" + "\n");
 
@@ -2505,7 +2505,7 @@ public class UtilConstants {
      * Default macro language 'js' corresponds to 'nashorn' on JDK8 and 'rhino'
      * on older versions.
      */
-    public static final String RUNPARM_OPTION_MACRO_LANGUAGE = "js";
+    public static final String RUNPARM_OPTION_MACRO_LANGUAGE = "nashorn";
 
     /**
      * Default macro extension.
