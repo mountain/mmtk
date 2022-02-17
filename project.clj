@@ -1,6 +1,6 @@
-(defproject mmj2e "0.0.0"
-  :description "mmj2e"
-  :url "https://github.com/mountain/mmj2e"
+(defproject mmtk "0.0.0"
+  :description "metamath toolkit on top of mmj2"
+  :url "https://github.com/mountain/mmtk"
   :license {:name "GPL-2.0"}
   :dependencies [[org.openjdk.nashorn/nashorn-core "15.3"]
                  [org.clojure/clojure "1.10.3"]
@@ -14,6 +14,7 @@
   :test-selectors {:default (complement :integration)
                    :integration :integration
                    :all (constantly true)}
+
   :compile-path "target/classes"
   :target-path "target/"
   :javac-options ["--release" "11"]
