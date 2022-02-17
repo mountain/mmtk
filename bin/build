@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 bin/lein uberjar
-cp target/mmj2e-standalone.jar dist/mmj2e-standalone.jar
-jpackage --input dist --main-jar mmj2e-standalone.jar
+#cp target/mmtk.jar dist/mmtk.jar
+#jpackage --input dist --main-jar mmtk.jar

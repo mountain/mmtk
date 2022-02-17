@@ -1,0 +1,7 @@
+LoadFile,{{database}}
+VerifyProof,*
+Parse,*
+ProofAsstUnifySearchExclude,biigb,xxxid,dummylink
+ProofAsstProofFolder,proofs
+TheoremLoaderMMTFolder,proofs
+RunProofAsstGUI

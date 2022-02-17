@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+java -jar target/mmtk.jar $@
