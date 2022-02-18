@@ -30,7 +30,7 @@
                     :examples    ["First example" "Second example"]
                     :opts        [{:as      "the reference database which is a local directory or a http url"
                                    :option  "database" :short-opt "d"
-                                   :default "https://github.com/metamath/set.mmtk/raw/develop/set.mmtk"
+                                   :default "https://github.com/metamath/set.mm/raw/develop/set.mm"
                                    :type    :string}]
                     :args        [{:as      "workspace directory"
                                    :arg     "wsdir"
