@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# shellcheck disable=SC2046
+# shellcheck disable=SC2164
+
+CWDIR=$(pwd)
+CMDDIR="${BASH_SOURCE[0]}";
+HOMEBIN="$HOME/bin"
+
+if([ -h "$CMDDIR" ]) then
+  while([ -h "$CMDDIR" ]) do CMDDIR=$(readlink "$CMDDIR"); done
+fi
+pushd . > /dev/null
+cd $(dirname "$CMDDIR") > /dev/null
+CMDDIR=$(pwd);
+popd  > /dev/null
+
+cd "${CMDDIR}/../"
+
+if([ ! -d "$HOMEBIN" ]) then
+  mkdir $HOMEBIN
+  echo "export PATH=$HOME/bin:$PATH" >> "$HOME/.profile"
+fi
+ln -s bin/mmtk $HOMEBIN
+source $HOME/.profile
+
+cd "$CWDIR" || return
