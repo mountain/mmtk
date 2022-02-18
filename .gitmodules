@@ -2,5 +2,5 @@
 	path = vendors/mmj2
 	url = https://github.com/digama0/mmj2.git
 [submodule "vendors/JSON-java"]
-	path = vendors/JSON-java/org/json
+	path = vendors/JSON-java
 	url = https://github.com/digama0/JSON-java.git
