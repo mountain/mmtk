@@ -13,8 +13,6 @@ cd $(dirname "$CMDDIR") > /dev/null
 CMDDIR=$(pwd);
 popd  > /dev/null
 
-cd "${CMDDIR}/../"
-
-java -jar target/mmtk.jar "$@"
+java -Duser.dir=$CWDIR -jar "${CMDDIR}/../target/mmtk.jar" "$@"
 
 cd "$CWDIR" || return

@@ -4,8 +4,11 @@
   :license {:name "GPL-2.0"}
   :dependencies [[org.openjdk.nashorn/nashorn-core "15.3"]
                  [org.clojure/clojure "1.10.3"]
+                 [clj-commons/clj-yaml "0.7.0"]
+                 [cli-matic "0.4.3"]
                  [clj-http "3.12.3"]
-                 [cli-matic "0.4.3"]]
+                 [hbs "1.0.3"]
+                 [org.slf4j/slf4j-nop "1.7.36"]]
   :source-paths ["src/main/clojure"]
   :java-source-paths ["src/main/java" "vendors/mmj2/src" "vendors/JSON-java/"]
   :resource-paths ["src/main/resources"]
@@ -24,4 +27,4 @@
   :uberjar-name "mmtk.jar"
 
   :aot :all
-  :main metamath.mmtk)
+  :main mmtk.main)

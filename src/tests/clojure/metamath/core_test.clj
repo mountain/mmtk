@@ -1,6 +1,6 @@
 (ns metamath.core-test
   (:require [clojure.test :refer :all]
-            [metamath.mmtk :refer :all]))
+            [metamath.main :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
