@@ -21,7 +21,9 @@ if([ ! -d "$HOMEBIN" ]) then
   mkdir $HOMEBIN
   echo "export PATH=$HOME/bin:$PATH" >> "$HOME/.profile"
 fi
-ln -s bin/mmtk $HOMEBIN
+cd $HOMEBIN
+rm mmtk
+ln -s $CMDDIR/mmtk .
 source $HOME/.profile
 
 cd "$CWDIR" || return

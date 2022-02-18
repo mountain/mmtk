@@ -2,7 +2,7 @@
 
 This is an experimental toolkit of metamath based on mmj2.
 
-So far it are working in progress.
+So far it is working in progress.
 
 ## Usage
 
