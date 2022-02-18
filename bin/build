@@ -17,6 +17,10 @@ CMDDIR=$(pwd);
 popd  > /dev/null
 
 cd "${CMDDIR}/../"
+if([ ! -d "$VNDRMMJ2" ]) then
+  git submodule init
+  git submodule update
+fi
 
 bin/lein uberjar
 
