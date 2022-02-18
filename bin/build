@@ -1,5 +1,27 @@
 #!/usr/bin/env bash
 
+# shellcheck disable=SC2046
+# shellcheck disable=SC2164
+
+CWDIR=$(pwd)
+CMDDIR="${BASH_SOURCE[0]}";
+VNDRMMJ2="${CMDDIR}/../vendors/mmj2"
+VNDRJSON="${CMDDIR}/../vendors/JSON-java"
+
+if([ -h "$CMDDIR" ]) then
+  while([ -h "$CMDDIR" ]) do CMDDIR=$(readlink "$CMDDIR"); done
+fi
+pushd . > /dev/null
+cd $(dirname "$CMDDIR") > /dev/null
+CMDDIR=$(pwd);
+popd  > /dev/null
+
+cd "${CMDDIR}/../"
+if([ -h "$CMDDIR" ]) then
+  while([ -h "$CMDDIR" ]) do CMDDIR=$(readlink "$CMDDIR"); done
+fi
+
 bin/lein uberjar
-#cp target/mmtk.jar dist/mmtk.jar
-#jpackage --input dist --main-jar mmtk.jar
+
+cd "$CWDIR" || return
+

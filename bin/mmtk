@@ -1,3 +1,20 @@
 #!/usr/bin/env bash
 
-java -jar target/mmtk.jar $@
+# shellcheck disable=SC2046
+# shellcheck disable=SC2164
+
+CWDIR=$(pwd)
+CMDDIR="${BASH_SOURCE[0]}";
+if([ -h "$CMDDIR" ]) then
+  while([ -h "$CMDDIR" ]) do CMDDIR=$(readlink "$CMDDIR"); done
+fi
+pushd . > /dev/null
+cd $(dirname "$CMDDIR") > /dev/null
+CMDDIR=$(pwd);
+popd  > /dev/null
+
+cd "${CMDDIR}/../"
+
+java -jar target/mmtk.jar "$@"
+
+cd "$CWDIR" || return

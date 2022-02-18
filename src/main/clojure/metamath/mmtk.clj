@@ -6,18 +6,18 @@
     (:gen-class))
 
 (defn init-workspace []
-    (.mkdirs (expand-home "database"))
-    (.mkdirs (expand-home "proofs"))
-    (.mkdirs (expand-home "macros"))
-    (.mkdirs (expand-home "params"))
+    (.mkdirs "database")
+    (.mkdirs "proofs")
+    (.mkdirs "macros")
+    (.mkdirs "params")
     ;prepare database
-    ;generate params/RunParams.txt
+    ;generate params/default.txt
     )
 
 (defn invoke-pa []
-    (.runIt (BatchMMJ2.) (into-array String ["params/DBParms.txt"])))
+    (.runIt (BatchMMJ2.) (into-array String ["params/default.txt"])))
 
-(def CONFIGURATIONgit
+(def CONFIGURATION
     {:command     "mmtk"
      :description "A command-line metamath toolkit"
      :version     "0.0.0"

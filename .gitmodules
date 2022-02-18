@@ -1,0 +1,3 @@
+[submodule "vendors/mmj2"]
+	path = vendors/mmj2
+	url = https://github.com/digama0/mmj2.git
