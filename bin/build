@@ -17,9 +17,6 @@ CMDDIR=$(pwd);
 popd  > /dev/null
 
 cd "${CMDDIR}/../"
-if([ -h "$CMDDIR" ]) then
-  while([ -h "$CMDDIR" ]) do CMDDIR=$(readlink "$CMDDIR"); done
-fi
 
 bin/lein uberjar
 

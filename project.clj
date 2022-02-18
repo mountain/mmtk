@@ -7,7 +7,7 @@
                  [clj-http "3.12.3"]
                  [cli-matic "0.4.3"]]
   :source-paths ["src/main/clojure"]
-  :java-source-paths ["src/main/java"]
+  :java-source-paths ["src/main/java" "vendors/mmj2/src" "vendors/JSON-java/"]
   :resource-paths ["src/main/resources"]
 
   :test-paths ["src/tests/java/" "src/tests/clojure/"]
