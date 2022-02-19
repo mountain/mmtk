@@ -10,6 +10,7 @@
                  [hbs "1.0.3"]
                  [http-kit "2.5.3"]
                  [compojure "1.6.2"]
+                 [ring/ring-core "1.9.5"]
                  [org.slf4j/slf4j-nop "1.7.36"]]
   :source-paths ["src/main/clojure"]
   :java-source-paths ["src/main/java" "vendors/mmj2/src" "vendors/JSON-java/"]
