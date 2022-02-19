@@ -2,7 +2,8 @@
     (:require [cli-matic.core :refer [run-cmd]]
               [mmtk.cmd.init :refer [init-workspace]]
               [mmtk.cmd.pa :refer [invoke-pa]]
-              [mmtk.cmd.batch :refer [invoke-batch]])
+              [mmtk.cmd.batch :refer [invoke-batch]]
+              [mmtk.cmd.mpe :refer [start-mpe]])
     (:gen-class))
 
 (def CONFIGURATION
@@ -25,6 +26,10 @@
                     :description "invoke the proof assistant"
                     :examples    ["mmtk pa"]
                     :runs        invoke-pa}
+                   {:command     "mpe"
+                    :description "start a web server for mpe"
+                    :examples    ["mmtk mpeuni"]
+                    :runs        start-mpe}
                    {:command     "batch"
                     :description "batch execution on a params file"
                     :examples    ["mmtk batch params/default.txt"]
