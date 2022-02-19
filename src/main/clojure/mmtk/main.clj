@@ -3,7 +3,7 @@
               [mmtk.cmd.init :refer [init-workspace]]
               [mmtk.cmd.pa :refer [invoke-pa]]
               [mmtk.cmd.batch :refer [invoke-batch]]
-              [mmtk.cmd.mpe :refer [start-mpe]])
+              [mmtk.cmd.mpe :refer [start-mpe stop-mpe update-mpe]])
     (:gen-class))
 
 (def CONFIGURATION
@@ -27,9 +27,20 @@
                     :examples    ["mmtk pa"]
                     :runs        invoke-pa}
                    {:command     "mpe"
-                    :description "start a web server for mpe"
-                    :examples    ["mmtk mpeuni"]
-                    :runs        start-mpe}
+                    :description "mpe related commands"
+                    :subcommands [{:command     "start"
+                                   :description "start mpe web server"
+                                   :examples    ["mmtk mpe start"]
+                                   :runs        start-mpe}
+                                  {:command     "stop"
+                                   :description "stop mpe web server"
+                                   :examples    ["mmtk mpe stop"]
+                                   :runs        stop-mpe}
+                                  {:command     "update"
+                                   :description "update mpeuni.zip from metamath site"
+                                   :examples    ["mmtk mpe update"]
+                                   :runs        update-mpe}
+                                  ]}
                    {:command     "batch"
                     :description "batch execution on a params file"
                     :examples    ["mmtk batch params/default.txt"]
