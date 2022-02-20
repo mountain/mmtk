@@ -2,7 +2,8 @@
     (:require [clojure.java.io :as io]
               [clj-yaml.core :as yaml]
               [clj-http.client :as client]
-              [hbs.core :as hbs]))
+              [hbs.core :as hbs]
+              [mmtk.util.setting :refer [update-workspace get-workspace refresh-all]]))
 
 (defn check-url-or-fs
     "checks if it is a well-formed url or a directory on local file system"
@@ -15,8 +16,8 @@
 
 (defn get-db-file
     "get db file"
-    [wsdir test]
-    (io/file wsdir "database"
+    [test]
+    (io/file (get-workspace) "database"
              (let [urlorfile (keyword (check-url-or-fs test))]
                  (if (.equals urlorfile :file)
                      ; when test is :file
@@ -29,21 +30,21 @@
 
 (defn url-handler
     "handling url"
-    [wsdir test]
+    [test]
     (do (io/copy
             (:body (client/get test {:as :stream}))
-            (get-db-file wsdir test))))
+            (get-db-file test))))
 
 (defn file-handler
     "handling file"
-    [wsdir test]
+    [test]
     (do (io/copy
             (slurp (io/as-file test))
-            (io/file wsdir "database" (.getName (io/file test))))))
+            (io/file (get-workspace) "database" (.getName (io/file test))))))
 
 (defn err-handler
     "handling error"
-    [wsdir test]
+    [test]
     (println (String/format "error when mmtk seek %s" test)))
 
 (def handlers
@@ -54,22 +55,26 @@
 (defn init-workspace
     "initialize a workspace"
     [{:keys [database _arguments]}]
-    (.mkdirs (io/file (get _arguments 0) "database"))
-    (.mkdirs (io/file (get _arguments 0) "proofs"))
-    (.mkdirs (io/file (get _arguments 0) "macros"))
-    (.mkdirs (io/file (get _arguments 0) "params"))
+
+    (update-workspace (get _arguments 0))
+
+    (.mkdirs (io/file (get-workspace) "database"))
+    (.mkdirs (io/file (get-workspace) "proofs"))
+    (.mkdirs (io/file (get-workspace) "macros"))
+    (.mkdirs (io/file (get-workspace) "params"))
 
     ;generate mmtk.yaml
-    (spit (io/file (get _arguments 0) "mmtk.yaml")
+    (spit (io/file (get-workspace) "mmtk.yaml")
           (yaml/generate-string
               {:database database
                :pa {:width 768 :height 432}}))
+    (refresh-all)
 
     ;prepare database
     (let [test database]
-        ((get handlers (check-url-or-fs test)) (get _arguments 0) test))
+        ((get handlers (check-url-or-fs test)) test))
 
     ;generate params/default.txt
-    (spit (io/file (get _arguments 0) "params" "default.txt")
-          (hbs/render (slurp (io/resource "default.txt")) {:database (get-db-file "." database)})))
+    (spit (io/file (get-workspace) "params" "default.txt")
+          (hbs/render (slurp (io/resource "default.txt")) {:database (get-db-file database)})))
 
