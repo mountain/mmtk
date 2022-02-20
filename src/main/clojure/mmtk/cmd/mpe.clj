@@ -1,19 +1,16 @@
 (ns mmtk.cmd.mpe
-    (:import [java.util.concurrent CountDownLatch]
-             [java.nio.file Files OpenOption StandardOpenOption]
+    (:import [java.nio.file Files OpenOption StandardOpenOption]
              [java.nio.file FileSystems]
              [java.net URI])
     (:require [clojure.java.io :as io]
               [clojure.java.browse :refer [browse-url]]
               [clj-http.client :as client]
-              [mmtk.cmd.init :as init])
+              [mmtk.cmd.init :as init]
+              [mmtk.util.system :as system])
     (:use [compojure.route :only [files not-found]]
           [compojure.core :only [defroutes GET]]
           [ring.middleware.content-type :only [wrap-content-type]]
           org.httpkit.server))
-
-(def countdown (CountDownLatch. 1))
-(def delayed-countdown (delay (.countDown countdown) 3000))
 
 (defn start-mpe
     "start a web server for mpe"
@@ -31,8 +28,9 @@
           fsys (FileSystems/newFileSystem uri {})]
         ;static http server
         (defroutes all-routes
-                   (GET "/terminate" [] @delayed-countdown {:status  200
-                                                            :body    "done!"})
+                   (GET "/terminate" [] @system/delayed-shutdown
+                                        {:status  200
+                                         :body    "done!"})
                    (GET "/mpeuni/:file" [file]
                        {:status  200
                         :body    (Files/newInputStream (.getPath fsys "mpeuni" (into-array String [file])) (into-array OpenOption [StandardOpenOption/READ]))})
@@ -40,10 +38,10 @@
         (run-server (wrap-content-type all-routes) {:port 7979}))
     (println "... mpe server started on 7979!")
     (browse-url "http://localhost:7979/mpeuni/mmset.html")
-    (.await countdown))
+    (system/wait))
 
 (defn stop-mpe
-    "start a web server for mpe"
+    "stop mpe web server"
     [& args]
     (try
         (client/get "http://localhost:7979/terminate")
