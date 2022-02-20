@@ -14,5 +14,12 @@ pom.xml.asc
 
 .DS_Store
 
+mmtk.yaml
+database/
+macros/
+params/
+proofs/
+testdir/
+
 .idea/
 *.iml
