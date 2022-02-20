@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Git Submodules Init
+      uses: chris-short/github-action-git-submodules@v0.1.0
     - name: Install dependencies
       run: lein deps
     - name: Run tests
