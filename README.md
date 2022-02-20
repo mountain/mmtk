@@ -57,5 +57,12 @@ mmtk mpe start
 mmtk mpe stop
 ```
 
+You also can find a way to execute any RunParms files by
+```bash
+mmtk batch params/RunParms.txt
+```
+
+
+
 
 
