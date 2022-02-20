@@ -6,7 +6,7 @@
 (def settings
   (if (.exists (io/as-file "mmtk.yaml"))
     (atom (yaml/parse-string (slurp (io/as-file "mmtk.yaml"))))
-    (atom {})))
+    (atom {:database "https://github.com/metamath/set.mm/raw/develop/set.mm" :pa {:width 1024 :height 768}})))
 
 (defn refresh-all []
     (swap! settings coll/deep-merge (yaml/parse-string (slurp (io/as-file "mmtk.yaml")))))

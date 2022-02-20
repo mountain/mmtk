@@ -17,10 +17,15 @@
     "get db file"
     [wsdir test]
     (io/file wsdir "database"
-             ; we use the last part of the url as db file name
-             ; need more check on url format
-             (let [parts (.split (.getPath (io/as-url test)) "/")]
-                 (aget parts (dec (alength parts))))))
+             (let [urlorfile (keyword (check-url-or-fs test))]
+                 (if (.equals urlorfile :file)
+                     ; when test is :file
+                     (.getName (io/as-file test))
+                     ; when test is :url
+                     ; we use the last part of the url as db file name
+                     ; need more check on url format
+                     (let [parts (.split (.getPath (io/as-url test)) "/")]
+                         (aget parts (dec (alength parts))))))))
 
 (defn url-handler
     "handling url"
@@ -34,7 +39,7 @@
     [wsdir test]
     (do (io/copy
             (slurp (io/as-file test))
-            (io/file "database" (.getName (io/file test))))))
+            (io/file wsdir "database" (.getName (io/file test))))))
 
 (defn err-handler
     "handling error"
