@@ -42,6 +42,11 @@ Similar to git, the first step is `init` of a project
 mmtk init myworkspace
 ```
 
+The default database is set.mm, on case you want to switch to other database
+```bash
+mmtk init myworkspace -d https://github.com/metamath/set.mm/blob/develop/iset.mm
+```
+
 then enter the workspace, start the proof assistant
 
 ```bash
