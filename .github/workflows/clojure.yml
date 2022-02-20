@@ -13,9 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: domdere/git-submodule-action@0.0.1
-    - name: submodules init
-      run: git submodule init && git submodule update
+    - uses: textbook/git-checkout-submodule-action@2.1.1
     - name: install dependencies
       run: lein deps
     - name: run tests
