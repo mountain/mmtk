@@ -15,8 +15,8 @@
 
 (defn get-db-file
     "get db file"
-    [test]
-    (io/file "database"
+    [wsdir test]
+    (io/file wsdir "database"
              ; we use the last part of the url as db file name
              ; need more check on url format
              (let [parts (.split (.getPath (io/as-url test)) "/")]
@@ -24,21 +24,21 @@
 
 (defn url-handler
     "handling url"
-    [test]
+    [wsdir test]
     (do (io/copy
             (:body (client/get test {:as :stream}))
-            (get-db-file test))))
+            (get-db-file wsdir test))))
 
 (defn file-handler
     "handling file"
-    [test]
+    [wsdir test]
     (do (io/copy
             (slurp (io/as-file test))
             (io/file "database" (.getName (io/file test))))))
 
 (defn err-handler
     "handling error"
-    [test]
+    [wsdir test]
     (println (String/format "error when mmtk seek %s" test)))
 
 (def handlers
@@ -48,23 +48,23 @@
 
 (defn init-workspace
     "initialize a workspace"
-    [{:keys [database]} & args]
-    (.mkdirs (io/file (get 0 args) "database"))
-    (.mkdirs (io/file (get 0 args) "proofs"))
-    (.mkdirs (io/file (get 0 args) "macros"))
-    (.mkdirs (io/file (get 0 args) "params"))
+    [{:keys [database _arguments]}]
+    (.mkdirs (io/file (get _arguments 0) "database"))
+    (.mkdirs (io/file (get _arguments 0) "proofs"))
+    (.mkdirs (io/file (get _arguments 0) "macros"))
+    (.mkdirs (io/file (get _arguments 0) "params"))
 
     ;generate mmtk.yaml
-    (spit (io/file (get 0 args) "mmtk.yaml")
+    (spit (io/file (get _arguments 0) "mmtk.yaml")
           (yaml/generate-string
               {:database database
                :pa {:width 768 :height 432}}))
 
     ;prepare database
     (let [test database]
-        ((get handlers (check-url-or-fs test)) test))
+        ((get handlers (check-url-or-fs test)) (get _arguments 0) test))
 
     ;generate params/default.txt
-    (spit "params/default.txt"
-          (hbs/render (slurp (io/resource "default.txt")) {:database (get-db-file database)})))
+    (spit (io/file (get _arguments 0) "params" "default.txt")
+          (hbs/render (slurp (io/resource "default.txt")) {:database (get-db-file "." database)})))
 

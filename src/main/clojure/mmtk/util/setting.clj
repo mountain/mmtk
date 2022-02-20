@@ -3,7 +3,10 @@
               [clj-yaml.core :as yaml]
               [mmtk.util.coll :as coll]))
 
-(def settings (atom (yaml/parse-string (slurp (io/as-file "mmtk.yaml")))))
+(def settings
+  (if (.exists (io/as-file "mmtk.yaml"))
+    (atom (yaml/parse-string (slurp (io/as-file "mmtk.yaml"))))
+    (atom {})))
 
 (defn refresh-all []
     (swap! settings coll/deep-merge (yaml/parse-string (slurp (io/as-file "mmtk.yaml")))))

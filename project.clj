@@ -4,7 +4,7 @@
   :license {:name "GPL-2.0"}
   :dependencies [[org.openjdk.nashorn/nashorn-core "15.3"]
                  [org.clojure/clojure "1.10.3"]
-                 [clj-commons/clj-yaml "0.7.0"]
+                 [clj-commons/clj-yaml "0.7.107"]
                  [cli-matic "0.4.3"]
                  [clj-http "3.12.3"]
                  [hbs "1.0.3"]

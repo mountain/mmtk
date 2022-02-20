@@ -3,30 +3,35 @@
               [mmtk.cmd.init :refer [init-workspace]]
               [mmtk.cmd.pa :refer [invoke-pa]]
               [mmtk.cmd.batch :refer [invoke-batch]]
-              [mmtk.cmd.mpe :refer [start-mpe stop-mpe update-mpe]])
+              [mmtk.cmd.mpe :refer [start-mpe stop-mpe update-mpe]]
+              [clojure.tools.cli])
     (:gen-class))
 
 (def CONFIGURATION
     {:command     "mmtk"
      :description "A command-line metamath toolkit"
      :version     "0.0.0"
-     :subcommands [{:command     "init"
+     :opts        []
+     :subcommands [{:id          :init
+                    :command     "init"
                     :description "initialize a workspace"
-                    :examples    ["mmtk init ." "mmtk init dir"]
-                    :opts        [{:as      "the reference database which is a local directory or a http url"
-                                   :option  "database" :short-opt "d"
+                    :examples    ["mmtk init ." "mmtk init dirc" "mmtk init dirc -d http://a.bc.domian/f.mm"]
+                    :opts        [{:as      "a database which is a local file or a http url with extension *.mm"
+                                   :id      :database
+                                   :option  "database"
+                                   :short   "d"
+                                   :required "DATABASE"
                                    :default "https://github.com/metamath/set.mm/raw/develop/set.mm"
-                                   :type    :string}]
-                    :args        [{:as      "workspace directory"
-                                   :arg     "wsdir"
-                                   :default "."
-                                   :type    :string}]
+                                   :default-desc "set.mm database"
+                                   :type     :string}]
                     :runs        init-workspace}
-                   {:command     "pa"
+                   {:id          :pa
+                    :command     "pa"
                     :description "invoke the proof assistant"
                     :examples    ["mmtk pa"]
                     :runs        invoke-pa}
-                   {:command     "mpe"
+                   {:id          :mpe
+                    :command     "mpe"
                     :description "mpe related commands"
                     :subcommands [{:command     "start"
                                    :description "start mpe web server"
@@ -41,7 +46,8 @@
                                    :examples    ["mmtk mpe update"]
                                    :runs        update-mpe}
                                   ]}
-                   {:command     "batch"
+                   {:id          :batch
+                    :command     "batch"
                     :description "batch execution on a params file"
                     :examples    ["mmtk batch params/default.txt"]
                     :args        [{:as      "params file"
