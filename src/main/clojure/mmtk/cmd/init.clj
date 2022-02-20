@@ -16,8 +16,8 @@
 
 (defn get-db-file
     "get db file"
-    [test]
-    (io/file (get-workspace) "database"
+    [wsdir test]
+    (io/file wsdir "database"
              (let [urlorfile (keyword (check-url-or-fs test))]
                  (if (.equals urlorfile :file)
                      ; when test is :file
@@ -33,7 +33,7 @@
     [test]
     (do (io/copy
             (:body (client/get test {:as :stream}))
-            (get-db-file test))))
+            (get-db-file (get-workspace) test))))
 
 (defn file-handler
     "handling file"
@@ -76,5 +76,8 @@
 
     ;generate params/default.txt
     (spit (io/file (get-workspace) "params" "default.txt")
-          (hbs/render (slurp (io/resource "default.txt")) {:database (get-db-file database)})))
+          (hbs/render (slurp (io/resource "default.txt"))
+                      ; since runtime and installation time is different
+                      ; the ws setting here is '.'
+                      {:database (get-db-file "." database)})))
 

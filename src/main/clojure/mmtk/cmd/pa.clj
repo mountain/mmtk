@@ -11,8 +11,8 @@
           frmcnt (alength frames)]
         (if (> frmcnt 0)
             (let [frm (aget frames 0)
-                  width (setting/get-val [:pa :width])
-                  height (setting/get-val [:pa :height])]
+                  width (setting/get-val :pa :width)
+                  height (setting/get-val :pa :height)]
                 (.setSize frm width height)
                 (.setLocationRelativeTo frm nil)
                 (.addComponentListener frm

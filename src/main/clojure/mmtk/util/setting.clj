@@ -12,7 +12,7 @@
     (get @workspace :workspace))
 
 (def settings
-  (if (.exists (java.io.File. (str @workspace)  "mmtk.yaml"))
+  (if (.exists (java.io.File. (get-workspace)  "mmtk.yaml"))
     (atom (yaml/parse-string (slurp (io/as-file "mmtk.yaml"))))
     (atom {:database "https://github.com/metamath/set.mm/raw/develop/set.mm" :pa {:width 1024 :height 768}})))
 
@@ -23,6 +23,7 @@
     (get-in @settings keys))
 
 (defn update-val [keys val]
+    ;(println keys val)
     (swap! settings update-in keys (constantly val)))
 
 (defn save-all []
