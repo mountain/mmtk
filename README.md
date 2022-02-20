@@ -25,12 +25,15 @@ The subfolders are just follow the convention
 - proofs: the proofs by users
 
 ## Install
+Below instructions are on Linux or MacOS.
 
-Prior the installation, we assume you had already installed the JDK,
-latest LTS version is better, other versions may work but lack of enough test so far. 
+Prior to a installation, we assume you had already installed the JDK and git,
+latest JDK LTS version is better, other versions may work also, but lack of enough test so far. 
 
 Build first and install, then use anywhere on your computer.
 ```bash
+git clone https://github.com/mountain/mmtk.git
+cd mmtk
 bin/build
 bin/install
 ```
