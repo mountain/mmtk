@@ -42,7 +42,7 @@ Similar to git, the first step is `init` of a project
 mmtk init myworkspace
 ```
 
-then enter the workspace, to start the proof assistant
+then enter the workspace, start the proof assistant
 
 ```bash
 cd myworkspace
