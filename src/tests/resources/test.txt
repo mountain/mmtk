@@ -1,0 +1,3 @@
+LoadFile,database/test.mm
+VerifyProof,*
+Parse,*

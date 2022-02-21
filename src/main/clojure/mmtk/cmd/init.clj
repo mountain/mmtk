@@ -66,7 +66,9 @@
     ;generate mmtk.yaml
     (spit (io/file (get-workspace) "mmtk.yaml")
           (yaml/generate-string
-              {:database database
+              ; since runtime and installation time is different
+              ; the ws setting here is '.'
+              {:database (str (io/file (get-db-file "." database)))
                :pa {:width 768 :height 432}}))
     (refresh-all)
 

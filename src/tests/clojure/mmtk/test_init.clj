@@ -1,8 +1,9 @@
 (ns mmtk.test-init
   (:require [mmtk.cmd.init :refer [init-workspace]]
+            [mmtk.cmd.batch :refer [invoke-batch]]
             [clojure.java.io :as io]
             [mmtk.util.fs :refer [rmr]]
-            [mmtk.util.setting :refer [save-all refresh-all get-val]]
+            [mmtk.util.setting :refer [get-workspace update-workspace get-val]]
             [clojure.test :refer :all]))
 
 (deftest test-init
@@ -18,9 +19,9 @@
     (is (.exists (java.io.File. "test-workspace" "params")))
     (is (.exists (java.io.File. "test-workspace" "params/default.txt")))
     (is (.exists (java.io.File. "test-workspace" "proofs")))
-    (is (.equals (get-val :database) "src/tests/resources/test.mm"))
+    (is (get-val :database) "database/test.mm"))
     (let [testfoldr (io/as-file "test-workspace")]
-        (if (.exists testfoldr) (rmr testfoldr))))
+        (if (.exists testfoldr) (rmr testfoldr)))
   (testing "workspace init with http url"
       (let [testfoldr (io/as-file "test-workspace")]
           (if (.exists testfoldr) (rmr testfoldr)))
@@ -33,6 +34,6 @@
       (is (.exists (java.io.File. "test-workspace" "params")))
       (is (.exists (java.io.File. "test-workspace" "params/default.txt")))
       (is (.exists (java.io.File. "test-workspace" "proofs")))
-      (is (.equals (get-val :database) "https://github.com/metamath/set.mm/raw/develop/demo0.mm"))
+      (is (get-val :database) "https://github.com/metamath/set.mm/raw/develop/demo0.mm")
       (let [testfoldr (io/as-file "test-workspace")]
           (if (.exists testfoldr) (rmr testfoldr)))))
