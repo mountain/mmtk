@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: git submodule
       run: git submodule init && git submodule update
     - name: install dependencies
-      run: lein deps
+      run: bin/lein deps
     - name: run tests
-      run: lein test
+      run: bin/lein test
